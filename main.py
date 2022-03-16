@@ -1,12 +1,14 @@
-from flask import Flask 
+from flask import Flask, render_template 
 import os
 
-app = Flask(__name__)
+
+template_dir = os.path.abspath('./website/')
+app = Flask(__name__, template_folder=template_dir)
 
 
 @app.route('/')
 def hello():
-      return "Hello, World"
+      return render_template('home.html')
   
 
 
