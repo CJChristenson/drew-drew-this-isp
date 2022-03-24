@@ -1,0 +1,11 @@
+.navbar-custom {
+    background-color: #45a49e;
+}
+/* Modify brand and text color */
+
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+    color: #000000;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
