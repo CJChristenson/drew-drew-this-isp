@@ -1,11 +1,20 @@
-<!doctype html>
-<html>
-  <head>
-    <title>CPUs And How They Work</title>
-    <link rel="icon" href="./static/img/unnamed.jpeg">
-  </head>
-  <body>
-    {% include 'nav.html' %}
+{% extends 'nav.html' %}
 
-    </body>
-  </html>
+{% block css %}
+<title>CPUs And How They Work</title>
+<link rel="stylesheet" href="./static/css/index.css"/>
+{% endblock %}
+
+{% block content %}
+<div id="top-container">
+  <div class="blurred" id="top-text-contianer">
+    <h1>CPUs And How They Work</h1>
+    <h2>An Interactive Guide</h2>
+    <p>Made by:</p>
+    <p>Cooper Christenson</p>
+    <p>Drew Eldridge</p>
+    <p>Sean Ropp</p>
+  </div>
+</div>
+{% endblock %}
+   
