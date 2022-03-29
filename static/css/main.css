@@ -3,3 +3,32 @@
     --background-color:#1f2833;
     --navbar-color:#45a29e;
 }
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000;
+}
+::-webkit-scrollbar-thumb {
+    background: #45a29e;
+    border-radius: 10px
+}
+h1 {
+    font-size: 50px;
+}
+h2 {
+    font-size: 30px;
+}
+h3 {
+    font-size: 25px;
+}
+p {
+    font-size: 17px;
+}
+body {
+    background: #1f2833;
+    padding-bottom: 5vh;
+    overflow-x: hidden;
+
+}
