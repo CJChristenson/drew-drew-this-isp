@@ -1,7 +1,11 @@
+#imports for RPi GPIO library and time library
 import RPi.GPIO as GPIO
 import time
-GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
+
+GPIO.setmode(GPIO.BCM) #set GPIO mode to BCM to reference pins as GPIO numbers
+GPIO.setwarnings(False) #set warnings to false
+
+# define contant names to pin numbers for reference
 D7 = 24
 D6 = 25
 D5 = 8
@@ -23,6 +27,8 @@ run_mode = 6
 power = 22
 data_pins = [D7, D6, D5, D4, D3, D2, D1, D0]
 address_pins = [A3, A2, A1, A0]
+
+#define operations and their binary counterpart
 NOP = "0000"
 LDA = "0001"
 ADD = "0010"
@@ -34,13 +40,14 @@ JC = "0111"
 JZ = "1000"
 OUT = "1110"
 HLT = "1111"
-programming = True
+
+programming = True #variable to keep track of whether computer is in programming mode or not
+
+#GPIO setup for pions to determine if pins are input or output, and what the default values are.
 for pin in data_pins:
     GPIO.setup(pin, GPIO.OUT)
-
 for pin in address_pins:
     GPIO.setup(pin, GPIO.OUT)
-
 GPIO.setup(program, GPIO.OUT)
 GPIO.setup(m_clock, GPIO.OUT)
 GPIO.setup(a_clock, GPIO.OUT)
@@ -53,46 +60,55 @@ GPIO.output(a_clock, GPIO.LOW)
 GPIO.output(program, GPIO.HIGH)
 GPIO.output(reset_pin, GPIO.HIGH)
 GPIO.output(power, GPIO.LOW)
-time.sleep(1)
+time.sleep(1) #delay for 8-bit computer chip timings.
 GPIO.output(reset_pin, GPIO.LOW)
 GPIO.output(program_mode, GPIO.HIGH)
 GPIO.output(run_mode, GPIO.LOW)
 
+#function to set a output high
 def high(pin_in):
     GPIO.output(pin_in, GPIO.HIGH)
 
+#function to set a output low
 def low(pin_in):
     GPIO.output(pin_in, GPIO.LOW)
-    
+
+#function to pulse program pin in RAM module to program value
 def pro():
     low(program)
     high(program)
 
+#function to set computer to manual clock mode
 def manual():
     high(m_clock)
     low(a_clock)
 
+#function to set computer to auto clock mode
 def auto():
     high(a_clock)
     low(m_clock)
 
+#function to reset computer
 def reset():
     high(reset_pin)
     time.sleep(1)
     low(reset_pin)
 
+#function to move computer in programming mode, to enable programming
 def program_m():
     global programming
     high(program_mode)
     low(run_mode)
     programming = True
 
+#function to move computer in run mode, to enable program running
 def run_m():
     high(run_mode)
     low(program_mode)
     global programming
     programming = False
-    
+
+#function to set pins to high if value in instruction is "1", low if value is "0"
 def operate(o_instruction, amount):
     for ind in range(len(o_instruction)):
         if o_instruction[ind] == "0":
@@ -110,6 +126,7 @@ def operate(o_instruction, amount):
         else:
             print("Error")
 
+#function to set pins high if value in address is "1", low if value is "0"
 def set_address(address):
         for ind in range(len(address)):
             if address[ind] == "0":
@@ -119,7 +136,8 @@ def set_address(address):
             else:
                 print("Error")
         pro()
-    
+
+#function that given an input, can analyze the operation given, and call other functions to set pins high/low to program computer
 def analyzer(a_input):
     user_input = a_input
     address = user_input[0:4]
@@ -184,7 +202,8 @@ def analyzer(a_input):
     else:
         for pin in data_pins:
             high(pin)
-   
+
+#array of code for testing
 code = [ "0000 LDI 0001",
          "0001 STA 1110",
          "0010 LDI 0000",
@@ -202,11 +221,11 @@ code = [ "0000 LDI 0001",
          "1110 NOP 0000",
          "1111 NOP 0000"]
 
-
+# for loop to iterate over every instruction
 for instruction in code:
     analyzer(instruction)
     time.sleep(.5)
 
-
+#runs analyzer based on user text input
 while True:
     analyzer(input())
