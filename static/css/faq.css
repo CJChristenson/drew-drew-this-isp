@@ -1,9 +1,12 @@
+* {
+    font-family: Montserrat, sans-serif;
+}
 body {
     background: #1f2833;
 }
 #FaqBody {
     color: #66fcf1;
-    padding-top: 60px;
+    padding-top: 10px;
     text-align:center;
     
 }
@@ -12,9 +15,9 @@ body {
 }
 #subHeader {
     text-align:center;
-    
+    padding-top: 50px;
 }
 #subHeader-text {
-    padding-left: -20px;
     text-align:center;
+    padding-top: 15px;
 }
