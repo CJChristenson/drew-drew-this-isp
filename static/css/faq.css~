@@ -1,0 +1,19 @@
+body {
+    background: #1f2833;
+}
+#FaqBody {
+    color: #66fcf1;
+    padding-top: 60px;
+    text-align:center;
+}
+.lb-text {
+    color: #66fcf1;
+}
+#subHeader {
+    text-align:center;
+    
+}
+#subHeader-text {
+    padding-left: -20px;
+    text-align:center;
+}
