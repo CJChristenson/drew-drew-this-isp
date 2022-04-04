@@ -12,7 +12,7 @@
     <h3>Your position in queue: N/A</h3>
     <div id="program-input-div">
       <h3 id="program-input-header">Program Input</h3>
-      <form>
+      <form action="./api/test" method="post">
       <table id="input-table">
 	<tr>
 	  <th>Address</th>
@@ -21,78 +21,83 @@
 	</tr>
 	<tr>
 	  <td>0000</td>
-	  <td><input type="text" id="" name=""></td>
-	  <td><input type="text" id="" name=""></td>
+	  <td><input type="text" id="" name="0in"></td>
+	  <td><input type="text" id="" name="0val"></td>
 	</tr>
 	<tr>
 	  <td>0001</td>
-	  <td><input type="text" id="" name=""></td>
-	  <td><input type="text" id="" name=""></td>
+	  <td><input type="text" id="" name="1in"></td>
+	  <td><input type="text" id="" name="1val"></td>
 	</tr>
 	<tr>
 	  <td>0010</td>
-	  <td><input type="text" id="" name=""></td>
-	  <td><input type="text" id="" name=""></td>
+	  <td><input type="text" id="" name="10in"></td>
+	  <td><input type="text" id="" name="10val"></td>
 	</tr>
 	<tr>
 	  <td>0011</td>
-	  <td><input type="text" id="" name=""></td>
-	  <td><input type="text" id="" name=""></td>
+	  <td><input type="text" id="" name="11in"></td>
+	  <td><input type="text" id="" name="11val"></td>
 	</tr>
 	<tr>
 	  <td>0100</td>
-	  <td><input type="text" id="" name=""></td>
-	  <td><input type="text" id="" name=""></td>
+	  <td><input type="text" id="" name="100in"></td>
+	  <td><input type="text" id="" name="100val"></td>
 	</tr>
 	<tr>
 	  <td>0101</td>
-	  <td><input type="text" id="" name=""></td>
-	  <td><input type="text" id="" name=""></td>
+	  <td><input type="text" id="" name="101in"></td>
+	  <td><input type="text" id="" name="101val"></td>
 	</tr>
 	<tr>
 	  <td>0110</td>
-	  <td><input type="text" id="" name=""></td>
-	  <td><input type="text" id="" name=""></td>
+	  <td><input type="text" id="" name="110in"></td>
+	  <td><input type="text" id="" name="110val"></td>
 	</tr>
 	<tr>
 	  <td>0111</td>
-	  <td><input type="text" id="" name=""></td>
-	  <td><input type="text" id="" name=""></td>
+	  <td><input type="text" id="" name="111in"></td>
+	  <td><input type="text" id="" name="111val"></td>
 	</tr>
 	<tr>
 	  <td>1000</td>
-	  <td><input type="text" id="" name=""></td>
-	  <td><input type="text" id="" name=""></td>
+	  <td><input type="text" id="" name="1000in"></td>
+	  <td><input type="text" id="" name="1000val"></td>
 	</tr>
 	<tr>
 	  <td>1001</td>
-	  <td><input type="text" id="" name=""></td>
-	  <td><input type="text" id="" name=""></td>
+	  <td><input type="text" id="" name="1001in"></td>
+	  <td><input type="text" id="" name="100val"></td>
 	</tr>
 	<tr>
 	  <td>1010</td>
-	  <td><input type="text" id="" name=""></td>
-	  <td><input type="text" id="" name=""></td>
+	  <td><input type="text" id="" name="1010in"></td>
+	  <td><input type="text" id="" name="1010val"></td>
 	</tr>
 	<tr>
 	  <td>1011</td>
-	  <td><input type="text" id="" name=""></td>
-	  <td><input type="text" id="" name=""></td>
+	  <td><input type="text" id="" name="1011in"></td>
+	  <td><input type="text" id="" name="1011val"></td>
 	</tr>
 	<tr>
 	  <td>1100</td>
-	  <td><input type="text" id="" name=""></td>
-	  <td><input type="text" id="" name=""></td>
+	  <td><input type="text" id="" name="1100in"></td>
+	  <td><input type="text" id="" name="1100val"></td>
 	</tr>
 	<tr>
 	  <td>1101</td>
-	  <td><input type="text" id="" name=""></td>
-	  <td><input type="text" id="" name=""></td>
+	  <td><input type="text" id="" name="1101in"></td>
+	  <td><input type="text" id="" name="1101val"></td>
+	</tr>
+	<tr>
+	  <td>1110</td>
+	  <td><input type="text" id="" name="1110in"></td>
+	  <td><input type="text" id="" name="1110val"></td>
 	</tr>
 	<tr>
 	  <td>1111</td>
-	  <td><input type="text" id="" name=""></td>
-	  <td><input type="text" id="" name=""></td>
+	  <td><input type="text" id="" name="1111in"></td>
+	  <td><input type="text" id="" name="1111val"></td>
 	</tr>
 	<tr>
 	  <td></td>
@@ -103,6 +108,7 @@
 	</tr>
       </table>
       </form>
+      <p id="result-text">{{result}}</p>
     </div>
   </div>
   <div id="right-div">
