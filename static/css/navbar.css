@@ -14,3 +14,6 @@
 .navbar {
     height:6vh;
 }
+.container-fluid {
+    padding-left:0;
+}
