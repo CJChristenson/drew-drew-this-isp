@@ -1,0 +1,26 @@
+* {
+    color:#66fcf1;
+    font-family: Monsterrat, sans-serif;
+}
+#title {
+    text-align:left;
+    margin-left:5%;
+    margin-top:2%;
+}
+#subtitle {
+    margin-top:3%;
+}
+#body {
+    margin-left:3%;
+    margin-top:4%;
+}
+.dataBusImage {
+    object-fit: cover;
+    object-position: 50% 50%;
+    margin-top:-17%;
+}
+#box {
+    position:relative;
+    margin-left:5%;
+    width:90%;
+}
