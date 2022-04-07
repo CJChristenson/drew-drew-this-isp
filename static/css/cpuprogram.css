@@ -68,3 +68,13 @@ iframe {
     width: 40vw;
     height: 23vw;
 }
+#success {
+    color: green;
+    font-size: 20px;
+    text-align: center;
+}
+#failure {
+    color: red;
+    font-size: 20px;
+    text-align: center;
+}

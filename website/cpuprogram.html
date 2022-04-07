@@ -3,6 +3,7 @@
 
 {% block css %}
 <link rel="stylesheet" href="./static/css/cpuprogram.css">
+<script src="./static/js/cpuprogram.js"></script>
 <title>CPU Programming</title>
 {% endblock %}
 
@@ -13,7 +14,7 @@
     <h3>Your position in queue: N/A</h3>
     <div id="program-input-div">
       <h3 id="program-input-header">Program Input</h3>
-      <form action="./api/new-program" method="post">
+      <form id="input-form" action="./api/new-program" method="post">
       <table id="input-table">
 	<tr>
 	  <th>Address</th>
@@ -108,8 +109,10 @@
 	  <td></td>
 	</tr>
       </table>
+      <p id="success" hidden>Successfully submitted!</p>
+      <p id="failure" hidden>Failure to submit. Please try again later</p>
       </form>
-      <p id="result-text">{{result}}</p>
+      
     </div>
   </div>
   <div id="right-div">
