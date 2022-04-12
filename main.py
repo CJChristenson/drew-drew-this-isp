@@ -106,18 +106,36 @@ def i():
             programs.append(newProgram)
             ids.append(currentId)
             currentId += 1
-            print(ids.index(newProgram.id))
+            #print(ids.index(newProgram.id))
+            #programs.pop(0)
+            #ids.pop(0)
             return jsonify(id=newProgram.id, position=ids.index(newProgram.id))
 
 @app.route('/api/current-program')
 def current_program():
-      return json.dumps(temp, cls=programEncoder)
-      
+      if (len(programs) >= 1):
+            return json.dumps(programs[0], cls=programEncoder)
+      else:
+            return json.dumps("No programs")
+            
       
 
-@app.route('/test')
-def t():
-      return test
+@app.route('/api/remove-program')
+def remove_program():
+      programs.pop(0)
+      ids.pop(0)
+      return "Success"
+      
+
+@app.route('/api/position')
+def position():
+      args = request.args
+      request_id = int(args["id"])
+      if request_id in ids:
+            return jsonify(str(ids.index(request_id)))
+      else:
+            return jsonify("Id isn't present")
+      
 #This will call Flask to run the application to run on the VAPOR link. If the file name is main, it will run the application
 if __name__ == "__main__":
         app.run(host='0.0.0.0', port=(os.environ.get('VAPOR_LOCAL_PORT')))
