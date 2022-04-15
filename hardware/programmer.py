@@ -230,9 +230,6 @@ code = [ "0000 LDI 0001",
 #    print(type(instruction))
 #    time.sleep(.5)
 
-response = requests.get("https://codermerlin.com/vapor/cooper-christenson/api/current-program")
-request_json = response.json()
-print(request_json)
 #json_data = request_json.read()
 
 class instruction():
@@ -267,18 +264,29 @@ class program():
         }
 
 #print(type(request_json))
-id = (request_json["id"])
-instructs = []
-for step in (request_json["program"]):
-    instruct = instruction(step["address"],step["instruct"],step["value"])
-    instructs.append(instruct)
 
-current_program = program(id, instructs)
-for instruct in current_program.program:
-    #print(f'"{instruct.get_instruct()}"')
-    #print(instruct.get_instruct())
-    analyzer(instruct.get_instruct())
-    time.sleep(.5)
 #runs analyzer based on user text input
 while True:
-    analyzer(input())
+    response = requests.get("https://codermerlin.com/vapor/cooper-christenson/api/current-program")
+    request_json = response.json()
+
+    print(request_json)
+    if (request_json != "No programs"):
+        id = (request_json["id"])
+        instructs = []
+        for step in (request_json["program"]):
+            instruct = instruction(step["address"],step["instruct"],step["value"])
+            instructs.append(instruct)
+        
+        current_program = program(id, instructs)
+        for instruct in current_program.program:
+            #print(f'"{instruct.get_instruct()}"')
+            #print(instruct.get_instruct())
+            analyzer(instruct.get_instruct())
+            time.sleep(.5)
+        _ = requests.get("https://codermerlin.com/vapor/cooper-christenson/api/remove-program")
+            
+    
+    time.sleep(1)
+    
+    
