@@ -54,15 +54,13 @@ instruct0 = instruction('0000','NOP','0000')
 instruct1 = instruction('0001','NOP','0000')
 #define class that is created to contain one set of instructions
 class program():
-      def __init__(self, id, position, program):
-            self.id = id,
-            self.position = position
+      def __init__(self, id, program):
+            self.id = id
             self.program = program
 
       def serialize(self):
             return {
                   'id': self.id,
-                  'position': self.position,
                   'program': self.program.serialize()
             }
 
@@ -70,20 +68,74 @@ class programEncoder(JSONEncoder):
       def default(self, o):
             return o.__dict__
             
-temp = program(1, 1, [instruct0, instruct1])
+temp = program(1, [instruct0, instruct1])
 
-test = ""
-@app.route('/api/test', methods=['POST'])
+programs = []
+ids = []
+currentId = 1
+
+def processInputVal(inp):
+      if (inp == ""):
+            return "0000"
+      else:
+            return inp
+
+def processInputInstruct(inst):
+      if (inst == ""):
+            return "NOP"
+      else:
+            return inst
+
+      
+@app.route('/api/new-program', methods=['POST'])
 def i():
+      global currentId
+      global ids
       if request.method == 'POST':
             global test
-            test = request.form
-            return redirect(url_for('.cpuprogram', result="Success!"))
-     
+            current_form = request.form
+            instructions = []
+            for ind in range(0, 16):
+                  step = format(ind, "b")
+                  
+                  inst = instruction(step, processInputInstruct(current_form[f'{step}in']), processInputVal(current_form[f'{step}val']))
+                  instructions.append(inst)
+                  print(step)
 
-@app.route('/test')
-def t():
-      return test
+            newProgram = program(currentId,instructions)
+            programs.append(newProgram)
+            ids.append(currentId)
+            currentId += 1
+            #print(ids.index(newProgram.id))
+            #programs.pop(0)
+            #ids.pop(0)
+            return jsonify(id=newProgram.id, position=ids.index(newProgram.id))
+
+@app.route('/api/current-program')
+def current_program():
+      if (len(programs) >= 1):
+            return json.dumps(programs[0], cls=programEncoder)
+      else:
+            return json.dumps("No programs")
+            
+      
+
+@app.route('/api/remove-program')
+def remove_program():
+      programs.pop(0)
+      ids.pop(0)
+      return "Success"
+      
+
+@app.route('/api/position')
+def position():
+      args = request.args
+      request_id = int(args["id"])
+      if request_id in ids:
+            return jsonify(str(ids.index(request_id)))
+      else:
+            return jsonify("Id isn't present")
+      
 #This will call Flask to run the application to run on the VAPOR link. If the file name is main, it will run the application
 if __name__ == "__main__":
         app.run(host='0.0.0.0', port=(os.environ.get('VAPOR_LOCAL_PORT')))
