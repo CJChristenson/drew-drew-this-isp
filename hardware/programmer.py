@@ -1,6 +1,9 @@
 #imports for RPi GPIO library and time library
 import RPi.GPIO as GPIO
 import time
+import requests
+import json
+
 
 GPIO.setmode(GPIO.BCM) #set GPIO mode to BCM to reference pins as GPIO numbers
 GPIO.setwarnings(False) #set warnings to false
@@ -18,7 +21,7 @@ A0 = 23
 A1 = 18
 A2 = 15
 A3 = 14
-program = 2
+program_pin = 2
 m_clock = 26
 a_clock = 19
 reset_pin = 4
@@ -48,7 +51,7 @@ for pin in data_pins:
     GPIO.setup(pin, GPIO.OUT)
 for pin in address_pins:
     GPIO.setup(pin, GPIO.OUT)
-GPIO.setup(program, GPIO.OUT)
+GPIO.setup(program_pin, GPIO.OUT)
 GPIO.setup(m_clock, GPIO.OUT)
 GPIO.setup(a_clock, GPIO.OUT)
 GPIO.setup(reset_pin, GPIO.OUT)
@@ -57,7 +60,7 @@ GPIO.setup(power, GPIO.OUT)
 GPIO.setup(run_mode, GPIO.OUT)
 GPIO.output(m_clock, GPIO.HIGH)
 GPIO.output(a_clock, GPIO.LOW)
-GPIO.output(program, GPIO.HIGH)
+GPIO.output(program_pin, GPIO.HIGH)
 GPIO.output(reset_pin, GPIO.HIGH)
 GPIO.output(power, GPIO.LOW)
 time.sleep(1) #delay for 8-bit computer chip timings.
@@ -75,8 +78,8 @@ def low(pin_in):
 
 #function to pulse program pin in RAM module to program value
 def pro():
-    low(program)
-    high(program)
+    low(program_pin)
+    high(program_pin)
 
 #function to set computer to manual clock mode
 def manual():
@@ -116,7 +119,7 @@ def operate(o_instruction, amount):
         elif o_instruction[ind] == "1":
             high(data_pins[ind])
         else:
-            print("Error")
+            print("Error: Character not 0 or 1 (Line 122)")
     for ind in range(len(o_instruction)):
             
         if amount[ind] == "0":
@@ -124,7 +127,7 @@ def operate(o_instruction, amount):
         elif amount[ind] == "1":
             high(data_pins[ind+ 4])
         else:
-            print("Error")
+            print("Error: Character not 0 or 1 (Line 130)")
 
 #function to set pins high if value in address is "1", low if value is "0"
 def set_address(address):
@@ -134,7 +137,7 @@ def set_address(address):
             elif address[ind] == "1":
                 high(address_pins[ind])
             else:
-                print("Error")
+                print("Error: Character not 0 or 1 (Line 140)")
         pro()
 
 #function that given an input, can analyze the operation given, and call other functions to set pins high/low to program computer
@@ -222,10 +225,60 @@ code = [ "0000 LDI 0001",
          "1111 NOP 0000"]
 
 # for loop to iterate over every instruction
-for instruction in code:
-    analyzer(instruction)
-    time.sleep(.5)
+#for instruction in code:
+#    analyzer(instruction)
+#    print(type(instruction))
+#    time.sleep(.5)
 
+response = requests.get("https://codermerlin.com/vapor/cooper-christenson/api/current-program")
+request_json = response.json()
+print(request_json)
+#json_data = request_json.read()
+
+class instruction():
+    def __init__(self, address, instruct, value):
+        self.address = address
+        self.instruct = instruct
+        self.value = value
+
+    def get_instruct(self):
+        count = 4 - len(self.address)
+        add = ""
+        for _ in range(count):
+            add += "0"
+        add += self.address
+        return "%s %s %s" % (add, self.instruct, self.value)
+    def serialize(self):
+        return {
+            'address': self.address,
+            'instruction': self.instruct,
+            'value': self.value
+        }
+
+class program():
+    def __init__(self, id, program):
+        self.id = id,
+        self.program = program
+        
+    def serialize(self):
+        return {
+            'id': self.id,
+            'program': self.program.serialize()
+        }
+
+#print(type(request_json))
+id = (request_json["id"])
+instructs = []
+for step in (request_json["program"]):
+    instruct = instruction(step["address"],step["instruct"],step["value"])
+    instructs.append(instruct)
+
+current_program = program(id, instructs)
+for instruct in current_program.program:
+    #print(f'"{instruct.get_instruct()}"')
+    #print(instruct.get_instruct())
+    analyzer(instruct.get_instruct())
+    time.sleep(.5)
 #runs analyzer based on user text input
 while True:
     analyzer(input())
