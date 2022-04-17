@@ -284,6 +284,7 @@ while True:
             #print(instruct.get_instruct())
             analyzer(instruct.get_instruct())
             time.sleep(.5)
+        time.sleep(2)
         _ = requests.get("https://codermerlin.com/vapor/cooper-christenson/api/remove-program")
             
     
