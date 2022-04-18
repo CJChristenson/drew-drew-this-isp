@@ -72,3 +72,8 @@
     padding-right: 10vw;
     padding-top: 5vh;
 }
+.arrow {
+    float:right;
+    height:45%;
+    margin-right:5%;
+}
