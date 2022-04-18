@@ -224,14 +224,7 @@ code = [ "0000 LDI 0001",
          "1110 NOP 0000",
          "1111 NOP 0000"]
 
-# for loop to iterate over every instruction
-#for instruction in code:
-#    analyzer(instruction)
-#    print(type(instruction))
-#    time.sleep(.5)
-
-#json_data = request_json.read()
-
+#class for single instruction
 class instruction():
     def __init__(self, address, instruct, value):
         self.address = address
@@ -252,6 +245,7 @@ class instruction():
             'value': self.value
         }
 
+#class for program. Uses instruction class for instructions. Used to process API request
 class program():
     def __init__(self, id, program):
         self.id = id,
@@ -263,31 +257,29 @@ class program():
             'program': self.program.serialize()
         }
 
-#print(type(request_json))
 
-#runs analyzer based on user text input
+
+#Loop to continuously fetch new programs
 while True:
-    response = requests.get("https://codermerlin.com/vapor/cooper-christenson/api/current-program")
-    request_json = response.json()
+    response = requests.get("https://codermerlin.com/vapor/cooper-christenson/api/current-program") #request for new program
+    request_json = response.json() #get the json from the reuest
 
-    print(request_json)
-    if (request_json != "No programs"):
-        id = (request_json["id"])
-        instructs = []
-        for step in (request_json["program"]):
+    print(request_json) #print for debugging and status
+    if (request_json != "No programs"): #only process the json if the response isn't "No programs" or in other words, only if there is a program
+        id = (request_json["id"]) #get ID of program
+        instructs = [] # create empty array to hold the instructions
+        for step in (request_json["program"]): #go through the instructiosn in the JSON, convert to instruction class, and add to instructs array.
             instruct = instruction(step["address"],step["instruct"],step["value"])
             instructs.append(instruct)
         
-        current_program = program(id, instructs)
-        for instruct in current_program.program:
-            #print(f'"{instruct.get_instruct()}"')
-            #print(instruct.get_instruct())
+        current_program = program(id, instructs) #Converts JSON to program class
+        for instruct in current_program.program: #go through instructions and run through analyzer.
             analyzer(instruct.get_instruct())
-            time.sleep(.5)
-        time.sleep(2)
-        _ = requests.get("https://codermerlin.com/vapor/cooper-christenson/api/remove-program")
+            time.sleep(.5) #time delay meant to have delay for chips.
+        time.sleep(2) #delay before removing program for stream delay
+        _ = requests.get("https://codermerlin.com/vapor/cooper-christenson/api/remove-program") #request to remove the program that was processed.
             
     
-    time.sleep(1)
+    time.sleep(1) #Time delay to remove extra traffic from the API
     
     
