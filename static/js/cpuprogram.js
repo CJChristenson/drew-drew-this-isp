@@ -77,3 +77,39 @@ function update_cp() {
 var intervalId = window.setInterval(function(){
     update_cp()
 }, 5000);
+let allowed_programs = ["NOP", "LDA", "ADD", "SUB", "STA", "LDI", "JMP", "JC", "JZ", "JC ", "JZ ", "OUT", "HLT"]
+
+function program_input_check(name) {
+    let value = document.getElementsByName(name)[0].value
+    let okay = false;
+    for (i=0;i < allowed_programs.length; i++) {
+	program = allowed_programs[i]
+	
+	if (program.startsWith(value)) {
+	    okay = true
+	} 
+    }
+    if (okay) {
+	document.getElementById("invalid").hidden = true
+    } else {
+	document.getElementById("invalid").hidden = false
+    }
+}
+let allowed_values = ["0000", "0001", "0010", "0011", "0100", "0101", "0110", "0111", "1000", "1001", "1010", "1011", "1100", "1101", "1111"]
+
+function value_input_check(name) {
+    let value = document.getElementsByName(name)[0].value
+    let okay = false;
+    for (i=0;i < allowed_values.length; i++) {
+	a_value = allowed_values[i]
+	
+	if (a_value.startsWith(value)) {
+	    okay = true
+	} 
+    }
+    if (okay) {
+	document.getElementById("invalid").hidden = true
+    } else {
+	document.getElementById("invalid").hidden = false
+    }
+}

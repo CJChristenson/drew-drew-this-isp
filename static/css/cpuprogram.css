@@ -78,3 +78,8 @@ iframe {
     font-size: 20px;
     text-align: center;
 }
+#invalid {
+    color: red;
+    font-size:20px;
+    text-align: center;
+}
