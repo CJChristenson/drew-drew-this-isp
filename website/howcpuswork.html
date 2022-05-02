@@ -1,0 +1,65 @@
+{% extends 'nav.html' %}
+
+{% block css %}
+<title>How Do CPUs Work?</title>
+<link rel="stylesheet" href="./static/css/howcpuswork.css"/>
+{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>How Do CPUs Work?</title>
+    <h1 id="title">How Do CPUs Work?</h1>
+    <div id="box" style="width:100%;margin-left:0%">
+      <div id="box">
+	<p id="body" style="margin-top:0%">While CPUs may seem daunting as a whole, they are quite simple once broken down into simpler sections. Through this guide, you will get a fundamental understanding of registers, busses, the ALU or Arithmetic Logic Unit, RAM or Random Access Memory (which is not in a CPU), program counters, and the control unit. With this, you will have a basic understanding of how the components of a computer work together to complete basic tasks.
+	</p>
+	<p id="body" style="margin-top:0%"> A note for this guide. The following information will be aligned with the 8-bit CPU built and viewed in the stream. It will be noted whenever a piece information is specific to the 8-bit CPU. In addition, this guide will be a brief overview. To get more information, we suggest you do some more research.
+	</p>
+      </div>
+      <div id="box" style="width:60%;float:left">
+	<h2 id="subtitle">Address and Data Bus</h2>
+	<p id="body">Busses are ways that information can be moved around within the CPU. Most CPUs have an address and a data bus, but in the 8-bit CPU on this site has a shared bus. </p>
+	<p id="body"> Starting with the address bus, this is how the CPU accesses different words (8 bits) of data. Because the data is limited by size, we must have a way to reference different data at different times. We can use addresses in conjunction with memory to store data at different “locations” that can be later accessed. To retrieve or set a specific set of data, the CPU can use the address bus to specify the destination address of the data (pictured right). For example, at location 4010, the word “0000 0100” is present.</p>
+	<p id="body">Next is the data bus, this is how the CPU moves the data around itself. This is done by one module outputting it’s data on the bus, and another module “taking in” the data. </p>
+	<p id="body">In most cases, the address and data busses take up separate “wires” on the system bus. But, on the 8-bit CPU on this site, the main bus is shared between the two. This is done by changing how the microcode runs on the instructions (more about that later). </p>
+      </div>
+      <div style="width:15%;margin-top:5%;margin-left:5%;float:left">
+	<img class="dataBusImage" src="./static/img/databus.png">
+	<p style="font-size:1vh">Source:<a href="https://www.codermerlin.com/wiki/index.php/Computer_Architecture">Here</a></p>
+      </div>
+      <div id="box" style="width:45%;float:left">
+	<h2 id="subtitle">Arithmetic Logic Unit (ALU)</h2>
+	<p id="body">The Arithmetic Logic Unit or ALU is responsible for taking one or two operands and performing a arithmetic or logical operation. It then will return the result of the operation. Operations that can be performed often include addition, subtraction, OR, XOR, AND, and NOT, thought this can vary between CPU’s. In the case of the 8-bit CPU on this site, it can perform addition and subtraction. </p>
+      </div>
+      <div id="box" style="width:45%;float:right;margin-left:0;margin-right:3%">
+	<img style="width:100%" src="./static/img/ALU.png">
+	<p id="body" style="margin-left:0;font-size:1vh;margin-top:0">Source:<a href="https://www.codermerlin.com/wiki/index.php/Computer_Architecture">Here</a></p>
+      </div>
+    </div>
+    <div id="box" style="float:left">
+      <h2 id="subtitle" style="margin-top:0">Registers</h2>
+      <p id="body" style="margin-top:2%">Registers are a form of memory that can be accessed faster than RAM. They are loaded by the machine in order to complete arithmetic operations with the ALU (as well as some other tasks). Typically, there is are two registers for input on the ALU, and one as output. Many CPU’s include more. In the case of the 8-bit CPU, there are two input registers (A and B) for the ALU, as well as one output register for the CPU. In addition, there is one instruction register for holding the current instruction, program counter register,  and a “flags” or status register (to be used with jumps).</p>
+    </div>
+    <div id="box" style="width:42.5%;float:left">
+      <h2 id="subtitle">Program Counter</h2>
+      <p id="body">The program counter is a register that indicates where a computer is in program sequence. After fetching an instruction, it is incremented and then points to the location of the next instruction.
+      </p>
+    </div>
+    <div id="box" style="width:42.5%;float:right;margin-right:5%">
+      <h2 id="subtitle">Control Unit</h2>
+      <p id="body">The control unit is arguably the most important part of a CPU. This portion of the CPU directs the operation of the CPU. It is often composed of a decoder to decode the instructions and timings, as well as signals that control the separate parts
+      </p>
+    </div>
+    <div id="box" style="width:90%;float:left">
+      <h2 id="subtitle">Random Access Memory (RAM)</h2>
+      <p id="body" style="margin-top:2%;margin-bottom:3%">Random Access Memory is a component of a computer not within the CPU. As another form of computer memory, it is often tasked with storing data and instructions for the CPU. For the 8-bit CPU, it is included so programs can be created.
+      </p>
+      <hr style="opacity:inherit;color:#66fcf1">
+      <p id="body" style="margin-top:3%;margin-bottom:5%">To learn more and view our sources, see these links:<br><a href="https://en.wikipedia.org/wiki/Control_unit">https://en.wikipedia.org/wiki/Control_unit</a><br><a href="https://en.wikipedia.org/wiki/Random-access_memory">https://en.wikipedia.org/wiki/Random-access_memory</a><br><a href="https://en.wikipedia.org/wiki/Program_counter">https://en.wikipedia.org/wiki/Program_counter</a><br><a href="https://www.codermerlin.com/wiki/index.php/Computer_Architecture">https://www.codermerlin.com/wiki/index.php/Computer_Architecture</a>
+    </div>
+  </head>
+</html>
+
+{% endblock %}

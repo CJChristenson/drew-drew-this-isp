@@ -1,0 +1,7 @@
+<style>
+  body {
+      background-image: {{url_for('static', filename='img/Test.png')}};
+  }
+</style>
+<h1>This is a test page</h1>
+<img src="{{url_for('static', filename='Test.png')}}"/>

@@ -1,0 +1,53 @@
+* {
+    color:#66fcf1;
+    font-family: Monsterrat, sans-serif;
+}
+#title {
+    text-align:left;
+    margin-left:3%;
+}
+#subtitle {
+    margin-top:3%;
+}
+#body {
+    margin-left:3%;
+    width:50%;
+}
+.CPUImage {
+    width: 40%;
+    height: 45vh;
+    float: right;
+    object-fit: cover;
+    object-position: 50% 30%;
+    margin-top:-2%;
+}
+.programmingGIF {
+    width:40%;
+    height: 45vh;
+    float:left;
+    margin-top:3%;
+}
+.top {
+    width:90%;
+    height:90%;
+    position:relative;
+    margin-left:5%;
+}
+.table {
+    width:90%;
+    margin-left:5%;
+    margin-top:7%;
+    margin-bottom:3%
+}
+table, tbody, th, td {
+    border-width: 1px;
+    border-color:#9e9e9e;
+    border-collapse: collapse;
+    text-align:center;
+}
+th, td {
+    width:9%;
+    padding-top: 1%;
+    padding-bottom:1%;
+}
+	  

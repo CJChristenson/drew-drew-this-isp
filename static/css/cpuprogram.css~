@@ -1,0 +1,33 @@
+* {
+    color: #66fcf1
+}
+input {
+    background-color: #485e77;
+    width: 100px;
+    border-color: transparent;
+    text-align: center;
+}
+td {
+    text-align: center;
+}
+th {
+    text-align: center;
+}
+#input-table {
+   // background-color: #364658
+}
+#program-input-div {
+    background-color: #364658;
+    width: fit-content;
+}
+#submit-container {
+    align-content: center;
+}
+#left-div {
+    float: left;
+    width: 49.5vw;
+}
+#right-div {
+    float: left;
+    width: 49.5vw;
+}

@@ -1,0 +1,79 @@
+* {
+    font-family: Montserrat, sans-serif;
+}
+.lb-text {
+    color: #66fcf1;
+}
+.text-center {
+    text-align: center;
+}
+.float-left {
+    float: left;
+    margin-left: 5vw;
+    margin-right: 4vw;
+}
+.float-right {
+    float: right;
+    margin-left: 4vw;
+    margin-right: 5vw;
+}
+#top-container {
+    background-image: url(../img/home-background.png);
+    background-size: cover;
+    height: 80vh;
+    width: 100vw;
+    padding-top: 65px;
+}
+#top-text-container {
+    backdrop-filter: blur(4px);
+    box-shadow: 0 0 10px 10px #33333325;
+    padding: 20px;
+    width: fit-content;
+    margin-top: 10vh;
+    margin-left: 3vw;
+}
+#mid-container {
+    padding-top: 5vh;
+    height: fit-content
+}
+#mid-header {
+    text-align: center;
+}
+#info-text-container{
+    overflow: auto;
+}
+.mid-info-container {
+    width: 40vw;
+}
+#left-info-text {
+    width: 35vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#right-info-text {
+    width: 35vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+#name-div {
+    padding-top: 3vh;
+}
+.name {
+    float: left;
+    width: 33%;
+    text-align: center;
+}
+#about-us-div {
+    margin-top: 7vh;
+}
+#about-us-text {
+    padding-left: 10vw;
+    padding-right: 10vw;
+    padding-top: 5vh;
+}
+.arrow {
+    float:right;
+    height:45%;
+    margin-right:5%;
+}

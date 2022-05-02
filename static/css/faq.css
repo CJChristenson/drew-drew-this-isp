@@ -1,0 +1,46 @@
+* {
+    font-family: Montserrat, sans-serif;
+}
+body {
+    background: #1f2833;
+    margin:0;
+}
+#FaqBody {
+    color: #66fcf1;
+    padding-top: 10px;
+    text-align:center;
+    
+}
+.lb-text {
+    color: #66fcf1;
+}
+#subHeader {
+    text-align:center;
+    padding-top: 50px;
+}
+#subHeader-text {
+    text-align:center;
+    padding-top: 15px;
+}
+html, body {
+    position: absolute;
+    width: 100%; height: 100%;
+    left: 0; top: 0;
+    margin: 0; padding: 0;
+}
+.x {
+    animation: x 5s linear infinite alternate;
+}
+.y {
+    animation: y 3s linear infinite alternate;
+}
+@keyframes x {
+    100% {
+	transform: translateX( calc(100vw - 75px) );
+    }
+}
+@keyframes y {
+    100% {
+	transform: translateY( calc(94vh - 100px) );
+    }
+}

@@ -1,0 +1,179 @@
+i{% extends 'nav.html' %}
+
+{% block css %}
+<title>How 8Bit CPUs Work</title>
+<link rel="stylesheet" href="./static/css/how8bitwork.css"/>
+{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>How 8Bit CPUs Work</title>
+    <h1 id="title">How 8-Bit CPUs Work & How To Program Them</h1>
+    <div class="top">
+      <img class= "CPUImage" src="./static/img/cpu.png">
+      <h2 id="subtitle">How The CPU Works</h2>
+      <p id="body" style= "margin-top:2%"> For more specific information about how the CPU was built and how specific parts work, we suggest visiting <a href="https://eater.net/8bit">Here</a>, Ben Eater has video tutorials the thoroughly explain every part.
+      </p>
+      <p id="body">
+	For an in general guide, you as the user will be able to program and view the computer as it is running your application. Below, is a diagram of the locations of each specific module of the CPU. When viewing the steam, relate back to the diagram to know what part of the CPU is active.
+      </p>
+      <img class= "programmingGIF" src="./static/img/drewRidingHorse.gif">
+      <h2 id="subtitle" style= "text-align:right;margin-top:25vh">How To Program The CPU</h2>
+      <p style= "float:right;margin-top:2%;text-align:right;width:50%;margin-right:3%" >Below is a table in which all the instructions that the CPU can execute are present as well as how what they do. This in combination with the examples on the programming page will guide you through creating your own programs. If you get stuck, it might help to view Ben Eater’s videos on the capabilities of the computer and some example programs. To the right is a video displaying how to program in our website.
+      </p>
+    </div>
+    <div class="table">
+      <table>
+	<tr>
+	  <th>Instruction</th>
+	  <th>Binary</th>
+	  <th>Step 0</th>
+	  <th>Step 1</th>
+	  <th>Step 2</th>
+	  <th>Step 3</th>
+	  <th>Step 4</th>
+	  <th>Usage</th>
+	  <th style="width:28%;">Description</th>
+	</tr>
+
+	<tr>
+	  <td>NOP</td>
+	  <td>0000</td>
+	  <td>CO | MI</td>
+	  <td>RO | II | CE</td>
+	  <td>0</td>
+	  <td>0</td>
+	  <td>0</td>
+	  <td>0000<br>XXXX</td>
+	  <td style="text-align:left;padding-left:.75%">No Operation</td>
+	</tr>
+
+	<tr>
+	  <td>LDA</td>
+	  <td>0001</td>
+	  <td>CO | MI</td>
+	  <td>RO | II | CE</td>
+	  <td>IO | MI</td>
+	  <td>RO | AI</td>
+	  <td>EO | AI | FI</td>
+	  <td>0001<br>AAAA</td>
+	  <td style="text-align:left;padding-left:.75%">Load contents of memory address AAAA into A register</td>
+	</tr>
+
+	<tr>
+	  <td>ADD</td>
+	  <td>0010</td>
+	  <td>CO | MI</td>
+	  <td>RO | II | CE</td>
+	  <td>IO | MI</td>
+	  <td>RO | BI</td>
+	  <td>EO | AI | SU | FI</td>
+	  <td>0010<br>AAAA</td>
+	  <td style="text-align:left;padding-left:.75%">Load contents of memory address AAAA into B register, add A+B, store result in A register</td>
+	</tr>
+
+	<tr>
+	  <td>SUB</td>
+	  <td>0011</td>
+	  <td>CO | MI</td>
+	  <td>RO | II | CE</td>
+	  <td>IO | MI</td>
+	  <td>RO | BI</td>
+	  <td>0</td>
+	  <td>0011<br>AAAA</td>
+	  <td style="text-align:left;padding-left:.75%">Load contents of memory address AAAA into B register, subtract A-B, store result in A register</td>
+	</tr>
+
+	<tr>
+	  <td>STA</td>
+	  <td>0100</td>
+	  <td>CO | MI</td>
+	  <td>RO | II | CE</td>
+	  <td>IO | MI</td>
+	  <td>AI | RI</td>
+	  <td>0</td>
+	  <td>0100<br>AAAA</td>
+	  <td style="text-align:left;padding-left:.75%">Store contents of A register at memory address AAAA</td>
+	</tr>
+
+	<tr>
+	  <td>LDI</td>
+	  <td>0101</td>
+	  <td>CO | MI</td>
+	  <td>RO | II | CE</td>
+	  <td>IO | AI</td>
+	  <td>0</td>
+	  <td>0</td>
+	  <td>0101<br>VVVV</td>
+	  <td style="text-align:left;padding-left:.75%">Load 4-bit immediate value into A register (loads VVVV into A register)</td>
+	</tr>
+
+	<tr>
+	  <td>JMP</td>
+	  <td>0110</td>
+	  <td>CO | MI</td>
+	  <td>RO | II | CE</td>
+	  <td>IO | J</td>
+	  <td>0</td>
+	  <td>0</td>
+	  <td>0110<br>AAAA</td>
+	  <td style="text-align:left;padding-left:.75%">Unconditional jump: Set program counter to AAAA when carry flag is set, to resume from there. When carry flag is not set, resume normally</td>
+	</tr>
+
+	<tr>
+	  <td>JC</td>
+	  <td>0111</td>
+	  <td>CO | MI</td>
+	  <td>RO | II | CE</td>
+	  <td>IO | J / 0</td>
+	  <td>0</td>
+	  <td>0</td>
+	  <td>0111<br>AAAA</td>
+	  <td style="text-align:left;padding-left:.75%">Jump if carry: Set program counter to AAAA when carry flag is set, to resume from there. When carry flag is not set, resume normally</td>
+	</tr>
+
+	<tr>
+	  <td>JZ</td>
+	  <td>1000</td>
+	  <td>CO | MI</td>
+	  <td>RO | II | CE</td>
+	  <td>IO | J / 0</td>
+	  <td>0</td>
+	  <td>0</td>
+	  <td>1000<br>AAAA</td>
+	  <td style="text-align:left;padding-left:.75%">Jump if zero: Set program counter to AAAA when carry flag is set, to resume from there. When zero flag is not set, resume normally</td>
+	</tr>
+
+	<tr>
+	  <td>OUT</td>
+	  <td>1110</td>
+	  <td>CO | MI</td>
+	  <td>RO | II | CE</td>
+	  <td>AO | OI</td>
+	  <td>0</td>
+	  <td>0</td>
+	  <td>1110<br>XXXX</td>
+	  <td style="text-align:left;padding-left:.75%">Output contents of A register to 7-segment display; displayed as decimal</td>
+	</tr>
+
+	<tr>
+	  <td>HLT</td>
+	  <td>1111</td>
+	  <td>CO | MI</td>
+	  <td>RO | II | CE</td>
+	  <td>HLT</td>
+	  <td>0</td>
+	  <td>0</td>
+	  <td>1111<br>XXXX</td>
+	  <td style="text-align:left;padding-left:.75%">Halt execution</td>
+	</tr>
+      </table>
+    </div>
+    <hr style="width:90%;margin-left:5%;opacity:inherit;color:#66fcf1">
+    <p style="margin-top:3%;margin-bottom:5%;margin-left:5%"> Source:<a href="https://github.com/romanhaller/Ben-Eater-8-bit-computer-docs/blob/main/Instructions.pdf">https://github.com/romanhaller/Ben-Eater-8-bit-computer-docs/blob/main/Instructions.pdf</a>
+	  </p>
+  </head>
+</html>
+{% endblock %}
