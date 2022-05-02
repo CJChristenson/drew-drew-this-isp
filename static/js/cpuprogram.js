@@ -94,6 +94,7 @@ function program_input_check(name) {
     } else {
 	document.getElementById("invalid").hidden = false
     }
+    allowSubmission()
 }
 let allowed_values = ["0000", "0001", "0010", "0011", "0100", "0101", "0110", "0111", "1000", "1001", "1010", "1011", "1100", "1101", "1111"]
 
@@ -111,5 +112,23 @@ function value_input_check(name) {
 	document.getElementById("invalid").hidden = true
     } else {
 	document.getElementById("invalid").hidden = false
+    }
+    allowSubmission()
+}
+function isHidden(item) {
+    
+    if (window.getComputedStyle(item).display === "none") {
+	return true
+    } else {
+	return false
+    }
+}
+
+function allowSubmission() {
+    let message = document.getElementById('invalid')
+    if (!isHidden(message)) {
+	document.getElementById('submitButton').disabled = true;
+    } else {
+	document.getElementById('submitButton').disabled = false;
     }
 }
