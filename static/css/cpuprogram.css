@@ -83,3 +83,22 @@ iframe {
     font-size:20px;
     text-align: center;
 }
+#top-div {
+    display: block;
+    overflow: auto;
+}
+#examples-header {
+    text-align: center;
+}
+#img-div {
+    display: flex;
+    flex-direction: row;
+}
+.example-header {
+    text-align: center;
+}
+.example-img {
+    margin-left: 4vw;
+    margin-right: 4vw;
+    width: 25vw;
+}
