@@ -18,6 +18,13 @@ body {
     text-align:center;
     padding-top: 50px;
 }
+.rotateimg90 {
+	-webkit-transform:rotate(270deg);
+	-moz-transform: rotate(270deg);
+	-ms-transform: rotate(270deg);
+	-o-transform: rotate(270deg);
+	transform: rotate(270deg);
+}
 #subHeader-text {
     text-align:center;
     padding-top: 15px;
@@ -32,15 +39,25 @@ html, body {
     animation: x 5s linear infinite alternate;
 }
 .y {
-    animation: y 3s linear infinite alternate;
+    animation: y 4s linear infinite alternate;
 }
 @keyframes x {
     100% {
-	transform: translateX( calc(100vw - 75px) );
+	transform: translateX( calc(100% - 75px) );
     }
 }
 @keyframes y {
     100% {
 	transform: translateY( calc(94vh - 100px) );
+    }
+}
+@keyframes trole {
+    100% {
+	transform: translateX( calc(100% - 100px) );
+    }
+}
+@keyframes monke {
+    100% {
+	transform: translateY( calc(94vh - 75px) );
     }
 }

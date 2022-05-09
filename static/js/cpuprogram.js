@@ -97,7 +97,7 @@ function program_input_check(name) { //Function that checks the users input acro
     allowSubmission()
 }
 
-let allowed_values = ["0000", "0001", "0010", "0011", "0100", "0101", "0110", "0111", "1000", "1001", "1010", "1011", "1100", "1101", "1111"] //List of values that are allowed.
+let allowed_values = ["0000", "0001", "0010", "0011", "0100", "0101", "0110", "0111", "1000", "1001", "1010", "1011", "1100", "1101", "1110", "1111"] //List of values that are allowed.
 
 function value_input_check(name) { //Function that checks the users input across the list of values to make sure it is valid
     let value = document.getElementsByName(name)[0].value
