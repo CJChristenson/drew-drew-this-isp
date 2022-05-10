@@ -93,6 +93,8 @@ def processInputVal(inp):
 def processInputInstruct(inst):
       if (inst == ""):
             return "NOP"
+      elif (inst == "JC"):
+            return "JC "
       else:
             return inst
 
