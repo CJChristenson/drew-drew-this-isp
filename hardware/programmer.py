@@ -263,7 +263,8 @@ class program():
 while True:
     response = requests.get("https://codermerlin.com/vapor/cooper-christenson/api/current-program") #request for new program
     request_json = response.json() #get the json from the reuest
-
+    manual()
+    reset()
     print(request_json) #print for debugging and status
     if (request_json != "No programs"): #only process the json if the response isn't "No programs" or in other words, only if there is a program
         id = (request_json["id"]) #get ID of program
@@ -273,9 +274,14 @@ while True:
             instructs.append(instruct)
         
         current_program = program(id, instructs) #Converts JSON to program class
+        program_m()
         for instruct in current_program.program: #go through instructions and run through analyzer.
             analyzer(instruct.get_instruct())
-            time.sleep(.5) #time delay meant to have delay for chips.
+            pro()
+            time.sleep(1) #time delay meant to have delay for chips.
+        run_m()
+        auto()
+        time.sleep(20)
         time.sleep(2) #delay before removing program for stream delay
         _ = requests.get("https://codermerlin.com/vapor/cooper-christenson/api/remove-program") #request to remove the program that was processed.
             
